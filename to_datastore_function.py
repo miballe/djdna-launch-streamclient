@@ -13,7 +13,7 @@ def process_message(event, context):
     """
     pubsub_message = base64.b64decode(event['data']).decode('utf-8')
     msg_obj = json.loads(pubsub_message)
-    key = ds_client.key('newsarticle', msg_obj['an'])
+    key = ds_client.key('tradingnews', msg_obj['an'])
     entity = datastore.Entity(key=key, exclude_from_indexes=['body', 'snippet'])
     entity.update(msg_obj)
     ds_client.put(entity)
